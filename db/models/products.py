@@ -4,7 +4,7 @@ from datetime import datetime
 
 class Products(Base):
     __tablename__ = "products"
-    id: Mapped[int] = mapped_column(autoincrement=True)
+    id: Mapped[int] = mapped_column(primary_key=True, autoincrement=True)
     name: Mapped[str] = mapped_column(nullable=False)
     importer: Mapped[str] = mapped_column(nullable=False)
     quantity: Mapped[int] = mapped_column(default=0)

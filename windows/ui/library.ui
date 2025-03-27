@@ -1,0 +1,240 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>800</width>
+    <height>640</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>MainWindow</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <widget class="QTableWidget" name="tableWidget">
+    <property name="geometry">
+     <rect>
+      <x>35</x>
+      <y>91</y>
+      <width>731</width>
+      <height>331</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QWidget" name="horizontalLayoutWidget">
+    <property name="geometry">
+     <rect>
+      <x>40</x>
+      <y>440</y>
+      <width>721</width>
+      <height>80</height>
+     </rect>
+    </property>
+    <layout class="QHBoxLayout" name="horizontalLayout">
+     <item>
+      <widget class="QPushButton" name="btn_add">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Minimum" vsizetype="Expanding">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton {
+    background-color: #f5f5f5; /* Цвет фона */
+    color: black; /* Белый текст */
+    border: 1px solid #005cbf; /* Граница */
+    border-radius: 15px; /* Скругление углов */
+    padding: 8px 12px; /* Внутренние отступы */
+    font-size: 14px; /* Размер шрифта */
+}
+
+QPushButton:hover {
+     background-color: #e0e0e0; /* Цвет фона при наведении */
+}
+
+QPushButton:pressed {
+    background-color: #004ba0; /* Еще темнее при нажатии */
+    border: 1px solid #003a80;
+}
+
+QPushButton:disabled {
+    background-color: #dcdcdc; /* Серый фон для отключенной кнопки */
+    color: #a0a0a0; /* Серый текст */
+    border: 1px solid #c0c0c0;
+}
+</string>
+       </property>
+       <property name="text">
+        <string>Добавить книгу</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="btn_delete">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Minimum" vsizetype="Expanding">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton {
+    background-color: #f5f5f5; /* Цвет фона */
+    color: black; /* Белый текст */
+    border: 1px solid #005cbf; /* Граница */
+    border-radius: 15px; /* Скругление углов */
+    padding: 8px 12px; /* Внутренние отступы */
+    font-size: 14px; /* Размер шрифта */
+}
+
+QPushButton:hover {
+     background-color: #e0e0e0; /* Цвет фона при наведении */
+}
+
+QPushButton:pressed {
+    background-color: #004ba0; /* Еще темнее при нажатии */
+    border: 1px solid #003a80;
+}
+
+QPushButton:disabled {
+    background-color: #dcdcdc; /* Серый фон для отключенной кнопки */
+    color: #a0a0a0; /* Серый текст */
+    border: 1px solid #c0c0c0;
+}
+</string>
+       </property>
+       <property name="text">
+        <string>Удалить книгу</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="btn_edit">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Minimum" vsizetype="Expanding">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton {
+    background-color: #f5f5f5; /* Цвет фона */
+    color: black; /* Белый текст */
+    border: 1px solid #005cbf; /* Граница */
+    border-radius: 15px; /* Скругление углов */
+    padding: 8px 12px; /* Внутренние отступы */
+    font-size: 14px; /* Размер шрифта */
+}
+
+QPushButton:hover {
+     background-color: #e0e0e0; /* Цвет фона при наведении */
+}
+
+QPushButton:pressed {
+    background-color: #004ba0; /* Еще темнее при нажатии */
+    border: 1px solid #003a80;
+}
+
+QPushButton:disabled {
+    background-color: #dcdcdc; /* Серый фон для отключенной кнопки */
+    color: #a0a0a0; /* Серый текст */
+    border: 1px solid #c0c0c0;
+}
+</string>
+       </property>
+       <property name="text">
+        <string>Редактировать книгу</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </widget>
+   <widget class="QWidget" name="horizontalLayoutWidget_2">
+    <property name="geometry">
+     <rect>
+      <x>30</x>
+      <y>30</y>
+      <width>731</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <layout class="QHBoxLayout" name="horizontalLayout_2">
+     <item>
+      <widget class="QLineEdit" name="lineEdit_search">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="btn_search">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Minimum" vsizetype="Expanding">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="text">
+        <string>Поиск</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </widget>
+   <widget class="QPushButton" name="library">
+    <property name="geometry">
+     <rect>
+      <x>40</x>
+      <y>540</y>
+      <width>236</width>
+      <height>78</height>
+     </rect>
+    </property>
+    <property name="sizePolicy">
+     <sizepolicy hsizetype="Minimum" vsizetype="Expanding">
+      <horstretch>0</horstretch>
+      <verstretch>0</verstretch>
+     </sizepolicy>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton {
+    background-color: #f5f5f5; /* Цвет фона */
+    color: black; /* Белый текст */
+    border: 1px solid #005cbf; /* Граница */
+    border-radius: 15px; /* Скругление углов */
+    padding: 8px 12px; /* Внутренние отступы */
+    font-size: 14px; /* Размер шрифта */
+}
+
+QPushButton:hover {
+     background-color: #e0e0e0; /* Цвет фона при наведении */
+}
+
+QPushButton:pressed {
+    background-color: #004ba0; /* Еще темнее при нажатии */
+    border: 1px solid #003a80;
+}
+
+QPushButton:disabled {
+    background-color: #dcdcdc; /* Серый фон для отключенной кнопки */
+    color: #a0a0a0; /* Серый текст */
+    border: 1px solid #c0c0c0;
+}
+</string>
+    </property>
+    <property name="text">
+     <string>Перейти в библиотеку</string>
+    </property>
+   </widget>
+  </widget>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
