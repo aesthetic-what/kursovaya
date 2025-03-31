@@ -23,7 +23,7 @@ class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         if not MainWindow.objectName():
             MainWindow.setObjectName(u"MainWindow")
-        MainWindow.resize(800, 640)
+        MainWindow.resize(800, 548)
         self.centralwidget = QWidget(MainWindow)
         self.centralwidget.setObjectName(u"centralwidget")
         self.tableWidget = QTableWidget(self.centralwidget)
@@ -157,36 +157,6 @@ class Ui_MainWindow(object):
 
         self.horizontalLayout_2.addWidget(self.btn_search)
 
-        self.library = QPushButton(self.centralwidget)
-        self.library.setObjectName(u"library")
-        self.library.setGeometry(QRect(40, 540, 236, 78))
-        sizePolicy.setHeightForWidth(self.library.sizePolicy().hasHeightForWidth())
-        self.library.setSizePolicy(sizePolicy)
-        self.library.setStyleSheet(u"QPushButton {\n"
-"    background-color: #f5f5f5; /* \u0426\u0432\u0435\u0442 \u0444\u043e\u043d\u0430 */\n"
-"    color: black; /* \u0411\u0435\u043b\u044b\u0439 \u0442\u0435\u043a\u0441\u0442 */\n"
-"    border: 1px solid #005cbf; /* \u0413\u0440\u0430\u043d\u0438\u0446\u0430 */\n"
-"    border-radius: 15px; /* \u0421\u043a\u0440\u0443\u0433\u043b\u0435\u043d\u0438\u0435 \u0443\u0433\u043b\u043e\u0432 */\n"
-"    padding: 8px 12px; /* \u0412\u043d\u0443\u0442\u0440\u0435\u043d\u043d\u0438\u0435 \u043e\u0442\u0441\u0442\u0443\u043f\u044b */\n"
-"    font-size: 14px; /* \u0420\u0430\u0437\u043c\u0435\u0440 \u0448\u0440\u0438\u0444\u0442\u0430 */\n"
-"}\n"
-"\n"
-"QPushButton:hover {\n"
-"     background-color: #e0e0e0; /* \u0426\u0432\u0435\u0442 \u0444\u043e\u043d\u0430 \u043f\u0440\u0438 \u043d\u0430\u0432\u0435\u0434\u0435\u043d\u0438\u0438 */\n"
-"}\n"
-"\n"
-"QPushButton:pressed {\n"
-"    background-color: #004ba0; /* \u0415\u0449\u0435 \u0442\u0435\u043c\u043d\u0435\u0435 \u043f\u0440\u0438 \u043d\u0430\u0436\u0430\u0442"
-                        "\u0438\u0438 */\n"
-"    border: 1px solid #003a80;\n"
-"}\n"
-"\n"
-"QPushButton:disabled {\n"
-"    background-color: #dcdcdc; /* \u0421\u0435\u0440\u044b\u0439 \u0444\u043e\u043d \u0434\u043b\u044f \u043e\u0442\u043a\u043b\u044e\u0447\u0435\u043d\u043d\u043e\u0439 \u043a\u043d\u043e\u043f\u043a\u0438 */\n"
-"    color: #a0a0a0; /* \u0421\u0435\u0440\u044b\u0439 \u0442\u0435\u043a\u0441\u0442 */\n"
-"    border: 1px solid #c0c0c0;\n"
-"}\n"
-"")
         MainWindow.setCentralWidget(self.centralwidget)
 
         self.retranslateUi(MainWindow)
@@ -196,10 +166,9 @@ class Ui_MainWindow(object):
 
     def retranslateUi(self, MainWindow):
         MainWindow.setWindowTitle(QCoreApplication.translate("MainWindow", u"MainWindow", None))
-        self.btn_add.setText(QCoreApplication.translate("MainWindow", u"\u0414\u043e\u0431\u0430\u0432\u0438\u0442\u044c \u043a\u043d\u0438\u0433\u0443", None))
-        self.btn_delete.setText(QCoreApplication.translate("MainWindow", u"\u0423\u0434\u0430\u043b\u0438\u0442\u044c \u043a\u043d\u0438\u0433\u0443", None))
-        self.btn_edit.setText(QCoreApplication.translate("MainWindow", u"\u0420\u0435\u0434\u0430\u043a\u0442\u0438\u0440\u043e\u0432\u0430\u0442\u044c \u043a\u043d\u0438\u0433\u0443", None))
+        self.btn_add.setText(QCoreApplication.translate("MainWindow", u"\u0414\u043e\u0431\u0430\u0432\u0438\u0442\u044c \u0442\u043e\u0432\u0430\u0440", None))
+        self.btn_delete.setText(QCoreApplication.translate("MainWindow", u"\u0423\u0434\u0430\u043b\u0438\u0442\u044c \u0442\u043e\u0432\u0430\u0440", None))
+        self.btn_edit.setText(QCoreApplication.translate("MainWindow", u"\u0420\u0435\u0434\u0430\u043a\u0442\u0438\u0440\u043e\u0432\u0430\u0442\u044c \u0442\u043e\u0432\u0430\u0440", None))
         self.btn_search.setText(QCoreApplication.translate("MainWindow", u"\u041f\u043e\u0438\u0441\u043a", None))
-        self.library.setText(QCoreApplication.translate("MainWindow", u"\u041f\u0435\u0440\u0435\u0439\u0442\u0438 \u0432 \u0431\u0438\u0431\u043b\u0438\u043e\u0442\u0435\u043a\u0443", None))
     # retranslateUi
 

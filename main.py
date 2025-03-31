@@ -14,7 +14,7 @@ from db.models.users import Users
 if __name__ == "__main__":
     init_db()
     app = QApplication(sys.argv)
-    shop = ManagerWindow()
+    shop = ShopWindow()
     shop.show()
     app.exec()
     

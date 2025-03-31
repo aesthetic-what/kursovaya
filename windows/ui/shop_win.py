@@ -21,7 +21,7 @@ from PySide6.QtWidgets import (QApplication, QComboBox, QHBoxLayout, QLabel,
     QWidget)
 import windows.ui.res_rc
 
-class Ui_ShopWindow(object):
+class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         if not MainWindow.objectName():
             MainWindow.setObjectName(u"MainWindow")
@@ -31,58 +31,44 @@ class Ui_ShopWindow(object):
         self.scrollArea = QScrollArea(self.centralwidget)
         self.scrollArea.setObjectName(u"scrollArea")
         self.scrollArea.setGeometry(QRect(350, 40, 651, 571))
+        self.scrollArea.setStyleSheet(u"border-radius: 2px")
         self.scrollArea.setWidgetResizable(True)
         self.scrollAreaWidgetContents = QWidget()
         self.scrollAreaWidgetContents.setObjectName(u"scrollAreaWidgetContents")
-        self.scrollAreaWidgetContents.setGeometry(QRect(0, 0, 649, 569))
+        self.scrollAreaWidgetContents.setGeometry(QRect(0, 0, 651, 571))
+        self.scrollAreaWidgetContents.setStyleSheet(u"")
         self.listWidget = QListWidget(self.scrollAreaWidgetContents)
-        brush = QBrush(QColor(0, 0, 0, 255))
-        brush.setStyle(Qt.NoBrush)
-        brush1 = QBrush(QColor(177, 177, 177, 255))
-        brush1.setStyle(Qt.NoBrush)
-        font = QFont()
-        font.setFamilies([u"Segoe UI"])
-        font.setPointSize(14)
-        font.setBold(False)
-        __qlistwidgetitem = QListWidgetItem(self.listWidget)
-        __qlistwidgetitem.setFont(font);
-        __qlistwidgetitem.setBackground(brush1);
-        __qlistwidgetitem.setForeground(brush);
-        font1 = QFont()
-        font1.setFamilies([u"Segoe UI"])
-        font1.setPointSize(14)
-        __qlistwidgetitem1 = QListWidgetItem(self.listWidget)
-        __qlistwidgetitem1.setFont(font1);
         self.listWidget.setObjectName(u"listWidget")
-        self.listWidget.setGeometry(QRect(0, 0, 651, 601))
+        self.listWidget.setGeometry(QRect(0, 0, 651, 571))
         self.listWidget.setLayoutDirection(Qt.LeftToRight)
         self.listWidget.setAutoFillBackground(False)
         self.listWidget.setStyleSheet(u"QListWidget {\n"
 "    background-color: #f5f5f5; /* \u0426\u0432\u0435\u0442 \u0444\u043e\u043d\u0430 */\n"
 "    border: 1px solid #ccc; /* \u0413\u0440\u0430\u043d\u0438\u0446\u0430 */\n"
-"    border-radius: 5px; /* \u0421\u043a\u0440\u0443\u0433\u043b\u0435\u043d\u0438\u0435 \u0443\u0433\u043b\u043e\u0432 */\n"
-"    padding: 5px;\n"
+"    border-radius: 25px; /* \u0421\u043a\u0440\u0443\u0433\u043b\u0435\u043d\u0438\u0435 \u0443\u0433\u043b\u043e\u0432 */\n"
+"    padding: 15px;\n"
 "}\n"
 "\n"
 "QListWidget::item {\n"
 "    /*background-color: white; /* \u0424\u043e\u043d \u044d\u043b\u0435\u043c\u0435\u043d\u0442\u043e\u0432 */\n"
 "    color: #333; /* \u0426\u0432\u0435\u0442 \u0442\u0435\u043a\u0441\u0442\u0430 */\n"
-"    padding: 8px;\n"
+"    padding: 12px 15px;\n"
 "    border: 1px solid;\n"
 "    border-radius: 3px;\n"
 "	margin: 5px;\n"
 "}\n"
 "\n"
 "QListWidget::item:hover {\n"
-"    background-color: #e0e0e0; /* \u0426\u0432\u0435\u0442 \u043f\u0440\u0438 \u043d\u0430\u0432\u0435\u0434\u0435\u043d\u0438\u0438 */\n"
+"    background-color: #d0d0d0;\n"
 "}\n"
 "\n"
 "QListWidget::item:selected {\n"
-"    background-color: #0078d7; /* \u0426\u0432\u0435\u0442 \u0432\u044b\u0434\u0435\u043b\u0435\u043d\u043d\u043e\u0433\u043e \u044d"
-                        "\u043b\u0435\u043c\u0435\u043d\u0442\u0430 */\n"
-"    color: white;\n"
-"    border: 1px solid #005a9e;\n"
+"    background-color: #005a9e; /* \u0422\u0435\u043c\u043d\u043e-\u0441\u0438\u043d\u0438\u0439 \u0444\u043e\u043d */\n"
+"    color: white; /* \u0411\u0435\u043b\u044b\u0439 \u0442\u0435\u043a\u0441\u0442 */\n"
+"    font-weig"
+                        "ht: bold; /* \u0416\u0438\u0440\u043d\u044b\u0439 \u0442\u0435\u043a\u0441\u0442 \u0434\u043b\u044f \u0432\u044b\u0434\u0435\u043b\u0435\u043d\u043d\u043e\u0433\u043e \u044d\u043b\u0435\u043c\u0435\u043d\u0442\u0430 */\n"
 "}")
+        self.listWidget.setSortingEnabled(True)
         self.scrollArea.setWidget(self.scrollAreaWidgetContents)
         self.horizontalLayoutWidget = QWidget(self.centralwidget)
         self.horizontalLayoutWidget.setObjectName(u"horizontalLayoutWidget")
@@ -90,15 +76,15 @@ class Ui_ShopWindow(object):
         self.horizontalLayout = QHBoxLayout(self.horizontalLayoutWidget)
         self.horizontalLayout.setObjectName(u"horizontalLayout")
         self.horizontalLayout.setContentsMargins(0, 0, 0, 0)
-        self.pushButton = QPushButton(self.horizontalLayoutWidget)
-        self.pushButton.setObjectName(u"pushButton")
+        self.prev_button = QPushButton(self.horizontalLayoutWidget)
+        self.prev_button.setObjectName(u"prev_button")
         sizePolicy = QSizePolicy(QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Expanding)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.pushButton.sizePolicy().hasHeightForWidth())
-        self.pushButton.setSizePolicy(sizePolicy)
+        sizePolicy.setHeightForWidth(self.prev_button.sizePolicy().hasHeightForWidth())
+        self.prev_button.setSizePolicy(sizePolicy)
 
-        self.horizontalLayout.addWidget(self.pushButton)
+        self.horizontalLayout.addWidget(self.prev_button)
 
         self.label = QLabel(self.horizontalLayoutWidget)
         self.label.setObjectName(u"label")
@@ -106,12 +92,12 @@ class Ui_ShopWindow(object):
 
         self.horizontalLayout.addWidget(self.label)
 
-        self.pushButton_2 = QPushButton(self.horizontalLayoutWidget)
-        self.pushButton_2.setObjectName(u"pushButton_2")
-        sizePolicy.setHeightForWidth(self.pushButton_2.sizePolicy().hasHeightForWidth())
-        self.pushButton_2.setSizePolicy(sizePolicy)
+        self.next_button = QPushButton(self.horizontalLayoutWidget)
+        self.next_button.setObjectName(u"next_button")
+        sizePolicy.setHeightForWidth(self.next_button.sizePolicy().hasHeightForWidth())
+        self.next_button.setSizePolicy(sizePolicy)
 
-        self.horizontalLayout.addWidget(self.pushButton_2)
+        self.horizontalLayout.addWidget(self.next_button)
 
         self.label_2 = QLabel(self.centralwidget)
         self.label_2.setObjectName(u"label_2")
@@ -121,10 +107,10 @@ class Ui_ShopWindow(object):
         self.label_3 = QLabel(self.centralwidget)
         self.label_3.setObjectName(u"label_3")
         self.label_3.setGeometry(QRect(70, 230, 201, 31))
-        font2 = QFont()
-        font2.setFamilies([u"Yu Gothic UI"])
-        font2.setPointSize(14)
-        self.label_3.setFont(font2)
+        font = QFont()
+        font.setFamilies([u"Yu Gothic UI"])
+        font.setPointSize(14)
+        self.label_3.setFont(font)
         self.label_3.setAlignment(Qt.AlignHCenter|Qt.AlignTop)
         self.verticalLayoutWidget = QWidget(self.centralwidget)
         self.verticalLayoutWidget.setObjectName(u"verticalLayoutWidget")
@@ -152,15 +138,15 @@ class Ui_ShopWindow(object):
         self.horizontalLayout_4 = QHBoxLayout(self.horizontalLayoutWidget_3)
         self.horizontalLayout_4.setObjectName(u"horizontalLayout_4")
         self.horizontalLayout_4.setContentsMargins(0, 0, 0, 0)
-        self.pushButton_6 = QPushButton(self.horizontalLayoutWidget_3)
-        self.pushButton_6.setObjectName(u"pushButton_6")
+        self.searcn_button = QPushButton(self.horizontalLayoutWidget_3)
+        self.searcn_button.setObjectName(u"searcn_button")
 
-        self.horizontalLayout_4.addWidget(self.pushButton_6)
+        self.horizontalLayout_4.addWidget(self.searcn_button)
 
-        self.lineEdit = QLineEdit(self.horizontalLayoutWidget_3)
-        self.lineEdit.setObjectName(u"lineEdit")
+        self.searchbar = QLineEdit(self.horizontalLayoutWidget_3)
+        self.searchbar.setObjectName(u"searchbar")
 
-        self.horizontalLayout_4.addWidget(self.lineEdit)
+        self.horizontalLayout_4.addWidget(self.searchbar)
 
         self.verticalLayoutWidget_2 = QWidget(self.centralwidget)
         self.verticalLayoutWidget_2.setObjectName(u"verticalLayoutWidget_2")
@@ -168,26 +154,24 @@ class Ui_ShopWindow(object):
         self.verticalLayout_2 = QVBoxLayout(self.verticalLayoutWidget_2)
         self.verticalLayout_2.setObjectName(u"verticalLayout_2")
         self.verticalLayout_2.setContentsMargins(0, 0, 0, 0)
-        self.label_4 = QLabel(self.verticalLayoutWidget_2)
-        self.label_4.setObjectName(u"label_4")
+        self.sort = QLabel(self.verticalLayoutWidget_2)
+        self.sort.setObjectName(u"sort")
         sizePolicy1 = QSizePolicy(QSizePolicy.Policy.Preferred, QSizePolicy.Policy.Fixed)
         sizePolicy1.setHorizontalStretch(0)
         sizePolicy1.setVerticalStretch(0)
-        sizePolicy1.setHeightForWidth(self.label_4.sizePolicy().hasHeightForWidth())
-        self.label_4.setSizePolicy(sizePolicy1)
-        self.label_4.setAlignment(Qt.AlignCenter)
+        sizePolicy1.setHeightForWidth(self.sort.sizePolicy().hasHeightForWidth())
+        self.sort.setSizePolicy(sizePolicy1)
+        self.sort.setAlignment(Qt.AlignCenter)
 
-        self.verticalLayout_2.addWidget(self.label_4)
+        self.verticalLayout_2.addWidget(self.sort)
 
-        self.comboBox = QComboBox(self.verticalLayoutWidget_2)
-        self.comboBox.addItem("")
-        self.comboBox.addItem("")
-        self.comboBox.addItem("")
-        self.comboBox.addItem("")
-        self.comboBox.addItem("")
-        self.comboBox.setObjectName(u"comboBox")
+        self.sort_box = QComboBox(self.verticalLayoutWidget_2)
+        self.sort_box.addItem("")
+        self.sort_box.addItem("")
+        self.sort_box.addItem("")
+        self.sort_box.setObjectName(u"sort_box")
 
-        self.verticalLayout_2.addWidget(self.comboBox)
+        self.verticalLayout_2.addWidget(self.sort_box)
 
         MainWindow.setCentralWidget(self.centralwidget)
 
@@ -198,29 +182,18 @@ class Ui_ShopWindow(object):
 
     def retranslateUi(self, MainWindow):
         MainWindow.setWindowTitle(QCoreApplication.translate("MainWindow", u"MainWindow", None))
-
-        __sortingEnabled = self.listWidget.isSortingEnabled()
-        self.listWidget.setSortingEnabled(False)
-        ___qlistwidgetitem = self.listWidget.item(0)
-        ___qlistwidgetitem.setText(QCoreApplication.translate("MainWindow", u"item1", None));
-        ___qlistwidgetitem1 = self.listWidget.item(1)
-        ___qlistwidgetitem1.setText(QCoreApplication.translate("MainWindow", u"item2", None));
-        self.listWidget.setSortingEnabled(__sortingEnabled)
-
-        self.pushButton.setText(QCoreApplication.translate("MainWindow", u"PushButton", None))
+        self.prev_button.setText(QCoreApplication.translate("MainWindow", u"\u041f\u0440\u0435\u0434\u044b\u0434\u0443\u0449\u0430\u044f \u0441\u0442\u0440\u0430\u043d\u0438\u0446\u0430", None))
         self.label.setText(QCoreApplication.translate("MainWindow", u"\u0421\u0442\u0440\u0430\u043d\u0438\u0446\u0430 1", None))
-        self.pushButton_2.setText(QCoreApplication.translate("MainWindow", u"PushButton", None))
+        self.next_button.setText(QCoreApplication.translate("MainWindow", u"\u0421\u043b\u0435\u0434\u0443\u044e\u0449\u0430\u044f \u0441\u0442\u0440\u0430\u043d\u0438\u0446\u0430", None))
         self.label_2.setText("")
         self.label_3.setText(QCoreApplication.translate("MainWindow", u"username1312", None))
         self.pushButton_3.setText(QCoreApplication.translate("MainWindow", u"\u0420\u0435\u0434\u0430\u043a\u0442\u0438\u0440\u043e\u0432\u0430\u0442\u044c \u043f\u0440\u043e\u0444\u0438\u043b\u044c", None))
         self.pushButton_4.setText(QCoreApplication.translate("MainWindow", u"\u0412\u044b\u0439\u0442\u0438", None))
-        self.pushButton_6.setText(QCoreApplication.translate("MainWindow", u"\u043f\u043e\u0438\u0441\u043a", None))
-        self.label_4.setText(QCoreApplication.translate("MainWindow", u"\u0441\u043e\u0440\u0442\u0438\u0440\u043e\u0432\u0430\u0442\u044c \u043f\u043e:", None))
-        self.comboBox.setItemText(0, QCoreApplication.translate("MainWindow", u"\u043f\u0443\u0441\u0442\u043e", None))
-        self.comboBox.setItemText(1, QCoreApplication.translate("MainWindow", u"\u043f\u043e \u0432\u043e\u0437\u0440\u0430\u0441\u0442\u0430\u043d\u0438\u044e", None))
-        self.comboBox.setItemText(2, QCoreApplication.translate("MainWindow", u"\u043f\u043e \u0443\u0431\u044b\u0432\u0430\u043d\u0438\u044e", None))
-        self.comboBox.setItemText(3, QCoreApplication.translate("MainWindow", u"\u043f\u043e \u0440\u0435\u0439\u0442\u0438\u043d\u0433\u0443", None))
-        self.comboBox.setItemText(4, QCoreApplication.translate("MainWindow", u"\u043f\u043e \u043d\u0430\u043b\u0438\u0447\u0438\u044e", None))
+        self.searcn_button.setText(QCoreApplication.translate("MainWindow", u"\u043f\u043e\u0438\u0441\u043a", None))
+        self.sort.setText(QCoreApplication.translate("MainWindow", u"\u0441\u043e\u0440\u0442\u0438\u0440\u043e\u0432\u0430\u0442\u044c \u043f\u043e:", None))
+        self.sort_box.setItemText(0, "")
+        self.sort_box.setItemText(1, QCoreApplication.translate("MainWindow", u"A-Z", None))
+        self.sort_box.setItemText(2, QCoreApplication.translate("MainWindow", u"Z-A", None))
 
     # retranslateUi
 

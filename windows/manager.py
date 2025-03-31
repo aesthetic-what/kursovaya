@@ -9,6 +9,7 @@ from sqlalchemy import select
 from db.models.products import Products
 from db.db_core import local_session
 from windows.ui.library import Ui_MainWindow
+from windows.add_book import AddBookDialog
 import sys
 
 class ManagerWindow(QMainWindow):
@@ -18,31 +19,12 @@ class ManagerWindow(QMainWindow):
         self.ui = Ui_MainWindow()
         self.ui.setupUi(self)
         
-        # self.setGeometry(100, 100, 800, 600)
-
-        # self.tableWidget = QTableWidget(self)
-        # self.tableWidget.setGeometry(50, 50, 700, 400)
-        # self.tableWidget.setColumnCount(5)
-        # self.tableWidget.setHorizontalHeaderLabels(["ID", "Название", "Импортер", "Количество", "Дата добавления"])
+        self.ui.btn_add.clicked.connect(self.add_product)
+        self.ui.btn_edit.clicked.connect(self.edit_product)
+        self.ui.btn_delete.clicked.connect(self.delete_product)
         
-        # self.btn_add = QPushButton("Добавить", self)
-        # self.btn_add.setGeometry(50, 500, 100, 30)
-        # self.btn_add.clicked.connect(self.add_product)
-        
-        # self.btn_delete = QPushButton("Удалить", self)
-        # self.btn_delete.setGeometry(200, 500, 100, 30)
-        # self.btn_delete.clicked.connect(self.delete_product)
-        
-        # self.btn_edit = QPushButton("Изменить", self)
-        # self.btn_edit.setGeometry(350, 500, 100, 30)
-        # self.btn_edit.clicked.connect(self.edit_product)
-        
-        # self.btn_search = QPushButton("Поиск", self)
-        # self.btn_search.setGeometry(500, 500, 100, 30)
-        # self.btn_search.clicked.connect(self.search_products)
-        
-        # self.lineEdit_search = QLineEdit(self)
-        # self.lineEdit_search.setGeometry(50, 460, 200, 30)
+        self.ui.tableWidget.setColumnCount(6)
+        self.ui.tableWidget.setHorizontalHeaderLabels(["ID", "Название", "Описание", "Поставщик", "Количество", "Дата добавления\обновления"])
         
         self.load_products()
     
@@ -55,20 +37,20 @@ class ManagerWindow(QMainWindow):
         self.ui.tableWidget.setRowCount(len(products))
         for row, product in enumerate(products):
             self.ui.tableWidget.setItem(row, 0, QTableWidgetItem(str(product.id)))
-            self.ui.tableWidget.setItem(row, 1, QTableWidgetItem(product.name))
-            self.ui.tableWidget.setItem(row, 2, QTableWidgetItem(product.importer))
-            self.ui.tableWidget.setItem(row, 3, QTableWidgetItem(str(product.quantity)))
-            self.ui.tableWidget.setItem(row, 4, QTableWidgetItem(str(product.date_add)))
+            self.ui.tableWidget.setItem(row, 1, QTableWidgetItem(product.name)),
+            self.ui.tableWidget.setItem(row, 2, QTableWidgetItem(product.description))
+            self.ui.tableWidget.setItem(row, 3, QTableWidgetItem(product.importer))
+            self.ui.tableWidget.setItem(row, 4, QTableWidgetItem(str(product.quantity)))
+            self.ui.tableWidget.setItem(row, 5, QTableWidgetItem(str(product.date_add)))
         session.close()
     
     def add_product(self):
-        session = self.get_session()
-        new_product = Products(name="Новый товар", importer="Импортер", quantity=10)
-        session.add(new_product)
-        session.commit()
-        session.close()
-        self.load_products()
-    
+        """Открывает диалоговое окно для добавления книги."""
+        dialog = AddBookDialog()
+        if dialog.exec_():  # Ожидаем закрытия диалога
+            self.search_products()    
+            
+            
     def delete_product(self):
         selected_row = self.tableWidget.currentRow()
         if selected_row >= 0:

@@ -2,9 +2,9 @@ from sqlalchemy import create_engine
 from sqlalchemy.orm import DeclarativeBase, sessionmaker
 
 
-con_str = "postgresql+psycopg2://postgres:pass@aestheticperforator.ru:5432/kursovaya"
+con_str = "sqlite:///kursovaya.db"
 
-engine = create_engine(con_str, echo=True)
+engine = create_engine(con_str)
 
 local_session = sessionmaker(engine)
 

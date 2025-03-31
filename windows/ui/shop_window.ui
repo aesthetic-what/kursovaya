@@ -23,6 +23,9 @@
       <height>571</height>
      </rect>
     </property>
+    <property name="styleSheet">
+     <string notr="true">border-radius: 2px</string>
+    </property>
     <property name="widgetResizable">
      <bool>true</bool>
     </property>
@@ -31,9 +34,12 @@
       <rect>
        <x>0</x>
        <y>0</y>
-       <width>649</width>
-       <height>569</height>
+       <width>651</width>
+       <height>571</height>
       </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true"/>
      </property>
      <widget class="QListWidget" name="listWidget">
       <property name="geometry">
@@ -41,7 +47,7 @@
         <x>0</x>
         <y>0</y>
         <width>651</width>
-        <height>601</height>
+        <height>571</height>
        </rect>
       </property>
       <property name="layoutDirection">
@@ -54,71 +60,32 @@
        <string notr="true">QListWidget {
     background-color: #f5f5f5; /* Цвет фона */
     border: 1px solid #ccc; /* Граница */
-    border-radius: 5px; /* Скругление углов */
-    padding: 5px;
+    border-radius: 25px; /* Скругление углов */
+    padding: 15px;
 }
 
 QListWidget::item {
     /*background-color: white; /* Фон элементов */
     color: #333; /* Цвет текста */
-    padding: 8px;
+    padding: 12px 15px;
     border: 1px solid;
     border-radius: 3px;
 	margin: 5px;
 }
 
 QListWidget::item:hover {
-    background-color: #e0e0e0; /* Цвет при наведении */
+    background-color: #d0d0d0;
 }
 
 QListWidget::item:selected {
-    background-color: #0078d7; /* Цвет выделенного элемента */
-    color: white;
-    border: 1px solid #005a9e;
+    background-color: #005a9e; /* Темно-синий фон */
+    color: white; /* Белый текст */
+    font-weight: bold; /* Жирный текст для выделенного элемента */
 }</string>
       </property>
-      <item>
-       <property name="text">
-        <string>item1</string>
-       </property>
-       <property name="font">
-        <font>
-         <family>Segoe UI</family>
-         <pointsize>14</pointsize>
-         <weight>50</weight>
-         <bold>false</bold>
-        </font>
-       </property>
-       <property name="background">
-        <brush brushstyle="NoBrush">
-         <color alpha="255">
-          <red>177</red>
-          <green>177</green>
-          <blue>177</blue>
-         </color>
-        </brush>
-       </property>
-       <property name="foreground">
-        <brush brushstyle="NoBrush">
-         <color alpha="255">
-          <red>0</red>
-          <green>0</green>
-          <blue>0</blue>
-         </color>
-        </brush>
-       </property>
-      </item>
-      <item>
-       <property name="text">
-        <string>item2</string>
-       </property>
-       <property name="font">
-        <font>
-         <family>Segoe UI</family>
-         <pointsize>14</pointsize>
-        </font>
-       </property>
-      </item>
+      <property name="sortingEnabled">
+       <bool>true</bool>
+      </property>
      </widget>
     </widget>
    </widget>
@@ -133,7 +100,7 @@ QListWidget::item:selected {
     </property>
     <layout class="QHBoxLayout" name="horizontalLayout">
      <item>
-      <widget class="QPushButton" name="pushButton">
+      <widget class="QPushButton" name="prev_button">
        <property name="sizePolicy">
         <sizepolicy hsizetype="Minimum" vsizetype="Expanding">
          <horstretch>0</horstretch>
@@ -141,7 +108,7 @@ QListWidget::item:selected {
         </sizepolicy>
        </property>
        <property name="text">
-        <string>PushButton</string>
+        <string>Предыдущая страница</string>
        </property>
       </widget>
      </item>
@@ -156,7 +123,7 @@ QListWidget::item:selected {
       </widget>
      </item>
      <item>
-      <widget class="QPushButton" name="pushButton_2">
+      <widget class="QPushButton" name="next_button">
        <property name="sizePolicy">
         <sizepolicy hsizetype="Minimum" vsizetype="Expanding">
          <horstretch>0</horstretch>
@@ -164,7 +131,7 @@ QListWidget::item:selected {
         </sizepolicy>
        </property>
        <property name="text">
-        <string>PushButton</string>
+        <string>Следующая страница</string>
        </property>
       </widget>
      </item>
@@ -260,14 +227,14 @@ QListWidget::item:selected {
     </property>
     <layout class="QHBoxLayout" name="horizontalLayout_4">
      <item>
-      <widget class="QPushButton" name="pushButton_6">
+      <widget class="QPushButton" name="searcn_button">
        <property name="text">
         <string>поиск</string>
        </property>
       </widget>
      </item>
      <item>
-      <widget class="QLineEdit" name="lineEdit"/>
+      <widget class="QLineEdit" name="searchbar"/>
      </item>
     </layout>
    </widget>
@@ -282,7 +249,7 @@ QListWidget::item:selected {
     </property>
     <layout class="QVBoxLayout" name="verticalLayout_2">
      <item>
-      <widget class="QLabel" name="label_4">
+      <widget class="QLabel" name="sort">
        <property name="sizePolicy">
         <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
          <horstretch>0</horstretch>
@@ -298,30 +265,20 @@ QListWidget::item:selected {
       </widget>
      </item>
      <item>
-      <widget class="QComboBox" name="comboBox">
+      <widget class="QComboBox" name="sort_box">
        <item>
         <property name="text">
-         <string>пусто</string>
+         <string> </string>
         </property>
        </item>
        <item>
         <property name="text">
-         <string>по возрастанию</string>
+         <string>A-Z</string>
         </property>
        </item>
        <item>
         <property name="text">
-         <string>по убыванию</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>по рейтингу</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>по наличию</string>
+         <string>Z-A</string>
         </property>
        </item>
       </widget>
