@@ -3,7 +3,7 @@
 ################################################################################
 ## Form generated from reading UI file 'shop_window.ui'
 ##
-## Created by: Qt User Interface Compiler version 6.8.3
+## Created by: Qt User Interface Compiler version 6.8.2
 ##
 ## WARNING! All changes made in this file will be lost when recompiling UI file!
 ################################################################################
@@ -56,7 +56,7 @@ class Ui_ShopWindow(object):
 "\n"
 "QListWidget::item {\n"
 "    /*background-color: white; /* \u0424\u043e\u043d \u044d\u043b\u0435\u043c\u0435\u043d\u0442\u043e\u0432 */\n"
-"    color: black; /* \u0426\u0432\u0435\u0442 \u0442\u0435\u043a\u0441\u0442\u0430 */\n"
+"    color: black /* \u0426\u0432\u0435\u0442 \u0442\u0435\u043a\u0441\u0442\u0430 */\n"
 "    padding: 12px 15px;\n"
 "    border: 1px solid;\n"
 "    border-radius: 3px;\n"
@@ -119,7 +119,7 @@ class Ui_ShopWindow(object):
         self.login.setAlignment(Qt.AlignHCenter|Qt.AlignTop)
         self.verticalLayoutWidget = QWidget(self.centralwidget)
         self.verticalLayoutWidget.setObjectName(u"verticalLayoutWidget")
-        self.verticalLayoutWidget.setGeometry(QRect(70, 260, 201, 101))
+        self.verticalLayoutWidget.setGeometry(QRect(70, 260, 201, 161))
         self.verticalLayout = QVBoxLayout(self.verticalLayoutWidget)
         self.verticalLayout.setObjectName(u"verticalLayout")
         self.verticalLayout.setContentsMargins(0, 0, 0, 0)
@@ -129,6 +129,13 @@ class Ui_ShopWindow(object):
         self.edit_profile_button.setSizePolicy(sizePolicy1)
 
         self.verticalLayout.addWidget(self.edit_profile_button)
+
+        self.cart_button = QPushButton(self.verticalLayoutWidget)
+        self.cart_button.setObjectName(u"cart_button")
+        sizePolicy1.setHeightForWidth(self.cart_button.sizePolicy().hasHeightForWidth())
+        self.cart_button.setSizePolicy(sizePolicy1)
+
+        self.verticalLayout.addWidget(self.cart_button)
 
         self.logout_button = QPushButton(self.verticalLayoutWidget)
         self.logout_button.setObjectName(u"logout_button")
@@ -155,7 +162,7 @@ class Ui_ShopWindow(object):
 
         self.verticalLayoutWidget_2 = QWidget(self.centralwidget)
         self.verticalLayoutWidget_2.setObjectName(u"verticalLayoutWidget_2")
-        self.verticalLayoutWidget_2.setGeometry(QRect(80, 400, 181, 71))
+        self.verticalLayoutWidget_2.setGeometry(QRect(80, 480, 181, 71))
         self.verticalLayout_2 = QVBoxLayout(self.verticalLayoutWidget_2)
         self.verticalLayout_2.setObjectName(u"verticalLayout_2")
         self.verticalLayout_2.setContentsMargins(0, 0, 0, 0)
@@ -193,6 +200,7 @@ class Ui_ShopWindow(object):
         self.image_user.setText("")
         self.login.setText(QCoreApplication.translate("MainWindow", u"username1312", None))
         self.edit_profile_button.setText(QCoreApplication.translate("MainWindow", u"\u0420\u0435\u0434\u0430\u043a\u0442\u0438\u0440\u043e\u0432\u0430\u0442\u044c \u043f\u0440\u043e\u0444\u0438\u043b\u044c", None))
+        self.cart_button.setText(QCoreApplication.translate("MainWindow", u"\u041a\u043e\u0440\u0437\u0438\u043d\u0430", None))
         self.logout_button.setText(QCoreApplication.translate("MainWindow", u"\u0412\u044b\u0439\u0442\u0438", None))
         self.searcn_button.setText(QCoreApplication.translate("MainWindow", u"\u043f\u043e\u0438\u0441\u043a", None))
         self.sort.setText(QCoreApplication.translate("MainWindow", u"\u0441\u043e\u0440\u0442\u0438\u0440\u043e\u0432\u0430\u0442\u044c \u043f\u043e:", None))

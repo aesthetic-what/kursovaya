@@ -8,6 +8,7 @@ class Products(Base):
     id: Mapped[int] = mapped_column(primary_key=True, autoincrement=True)
     name: Mapped[str] = mapped_column(nullable=False)
     description: Mapped[str] = mapped_column(nullable=True)
+    type: Mapped[str] = mapped_column(nullable=True)
     importer: Mapped[str] = mapped_column(nullable=False)
     quantity: Mapped[int] = mapped_column(default=0)
     date_add: Mapped[datetime]

@@ -1,4 +1,6 @@
-from PySide6.QtWidgets import QMainWindow, QListWidgetItem, QMessageBox, QWidget, QLabel, QPushButton, QHBoxLayout
+from PySide6.QtWidgets import (QMainWindow, QListWidgetItem, QMessageBox, 
+                               QWidget, QLabel, QPushButton, QHBoxLayout, 
+                               QInputDialog)
 from PySide6.QtCore import Qt, QSize, QByteArray
 from PySide6.QtGui import QPixmap
 from sqlalchemy import select, func
@@ -7,125 +9,17 @@ from datetime import datetime
 
 from windows.ui.shop_win import Ui_ShopWindow
 from windows.edit_manager import EditProfile
+from windows.cart import CartWindow
+from windows.widgets import ListItemWidget
+
+from db.query.users import add_to_cart
 
 from db.models.products import Products
 from db.models.cart import Cart
 from db.models.cart_item import CartItem
 from db.models.users import Users
 from db.db_core import local_session
-
-
-class ListItemWidget(QWidget):
-    """Кастомный элемент списка: картинка + текст + кнопка"""
-    def __init__(self, image_data: bytes | None, text: str, parent_list, price: str):
-        super().__init__()
-
-        self.parent_list = parent_list  # Сохраняем ссылку на QListWidget
-        self.setStyleSheet("""
-                QPushButton {
-                background-color: #4CAF50;
-                color: white;
-                border: none;
-                padding: 5px 10px;
-                border-radius: 3px;
-            }
-            QPushButton:hover {
-                background-color: #45a049;
-            }
-            """)
-
-        # Картинка (если нет данных, загружаем "default.png")
-        self.image_label = QLabel()
-        pixmap = QPixmap()
-        if image_data:
-            pixmap.loadFromData(QByteArray(image_data))
-        else:
-            pixmap.load("default.png")  # Файл-заглушка
-
-        # Масштабируем картинку
-        pixmap = pixmap.scaled(50, 50, Qt.AspectRatioMode.KeepAspectRatio, Qt.TransformationMode.SmoothTransformation)
-        self.image_label.setPixmap(pixmap)
-
-        # Название товара
-        self.text_label = QLabel(text)
-        self.text_label.setStyleSheet("""
-            QLabel {
-                color: black;
-                font-size: 12px;
-            }
-        """)
-
-        # Кнопка "Купить"
-        self.button = QPushButton("В корзину")
-        self.button.clicked.connect(self.buy_item)  # Привязываем функцию
-
-        # Размещение элементов в строку
-        layout = QHBoxLayout()
-        layout.addWidget(self.image_label)
-        layout.addWidget(self.text_label)
-        layout.addWidget(self.button)
-        self.setLayout(layout)
-
-    def buy_item(self):
-        """
-        Добавляет товар в корзину пользователя.
         
-        Параметры:
-            user_id (int): ID пользователя
-            product_id (int): ID товара
-            quantity (int): количество товара
-            price (int): цена за единицу товара
-        
-        Возвращает:
-            CartItem: добавленный товар в корзине
-        """
-        session = local_session()
-        try:
-            # Проверяем, есть ли у пользователя активная корзина
-            корзина = session.query(Cart).filter(
-                Cart.user_id == user_id,
-                Cart.status == "awaiting payment"
-            ).first()
-            
-            # Если нет активной корзины - создаем новую
-            if not корзина:
-                корзина = Cart(
-                    user_id=user_id,
-                    status="awaiting payment",
-                    created_at=datetime.utcnow()
-                )
-                session.add(корзина)
-                session.commit()
-                session.refresh(корзина)
-            
-            # Проверяем, есть ли уже такой товар в корзине
-            товар_в_корзине = session.query(CartItem).filter(
-                CartItem.cart_id == корзина.id,
-                CartItem.product_id == product_id
-            ).first()
-            
-            if товар_в_корзине:
-                # Если товар уже есть - обновляем количество и сумму
-                товар_в_корзине.product_count += quantity
-                товар_в_корзине.summary = товар_в_корзине.product_count * price
-            else:
-                # Если товара нет - создаем новую запись
-                товар_в_корзине = CartItem(
-                    cart_id=корзина.id,
-                    product_id=product_id,
-                    product_count=quantity,
-                    summary=quantity * price
-                )
-                session.add(товар_в_корзине)
-            
-            session.commit()
-            return товар_в_корзине
-            
-        except SQLAlchemyError as e:
-            session.rollback()
-            raise Exception(f"Ошибка при добавлении товара в корзину: {str(e)}")
-        finally:
-            session.close()
 
 class ShopWindow(QMainWindow):
     def __init__(self, login: str, photo: bytes | None = None):
@@ -145,6 +39,8 @@ class ShopWindow(QMainWindow):
         self.ui.next_button.clicked.connect(self.next_page)
         self.ui.logout_button.clicked.connect(self.logout)
         self.ui.edit_profile_button.clicked.connect(self.edit_profile)
+        self.ui.listWidget.itemDoubleClicked.connect(self.add_to_cart)
+        self.ui.cart_button.clicked.connect(self.open_cart)
         
         # Константы и инициализация просцессов при запуске
         self.login = login
@@ -170,6 +66,13 @@ class ShopWindow(QMainWindow):
         finally:
             session.close()
 
+
+    def open_cart(self):
+        self.cart_win = CartWindow(self.user_info.id)
+        self.cart_win.setFixedSize(959, 600)
+        self.cart_win.show()
+
+
     def logout(self):
         from windows.auth import LoginWindow
         self.login_win = LoginWindow()
@@ -182,7 +85,6 @@ class ShopWindow(QMainWindow):
         self.edit_win.profileUpdated.connect(self.update_profile)
         self.edit_win.setFixedSize(879, 438)
         self.edit_win.show()
-        # self.close()
         
     def update_profile(self):
         """Обновляет данные профиля в главном окне"""
@@ -221,13 +123,19 @@ class ShopWindow(QMainWindow):
         
         # products = session.execute(select(Products)).scalars().all()
         for product in products:
-            item_text = f"Название: {product.name}\nОписание: {product.description}\nКоличество: {product.quantity}"
-            photo = self.get_info().photo
-            widget = ListItemWidget(photo, item_text, self.ui.listWidget)
+            item_text = f"Название: {product.name}\nОписание: {product.description}\nТип: {product.type}\nЦена: {product.price}\nКоличество: {product.quantity}"
+            widget = ListItemWidget(item_text, self.ui.listWidget, product.price)
             item = QListWidgetItem()
+            item.setData(Qt.UserRole, {
+            "name": product.name,
+            "product_id": product.id,
+            "price": product.price,
+            "quantity": product.quantity,
+            "type": product.type
+            })
             self.ui.listWidget.addItem(item)
             self.ui.listWidget.setItemWidget(item, widget)
-            item.setSizeHint(QSize(600, 100))
+            item.setSizeHint(QSize(600, 200))
         session.close()
         
         self.update_navigation_buttons()
@@ -269,7 +177,90 @@ class ShopWindow(QMainWindow):
             self.ui.listWidget.sortItems(Qt.SortOrder.AscendingOrder)
         elif index == 2:
             self.ui.listWidget.sortItems(Qt.SortOrder.DescendingOrder)
-            
+    
+    
+    def add_to_cart(self, item):
+        product_data = item.data(Qt.UserRole)  # Извлекаем данные о товаре
+        
+        if product_data:
+            user_id = self.user_info.id  # ID текущего пользователя
+            product_id = product_data["product_id"]
+            name = product_data["name"]
+            price = product_data["price"]
+            available_quantity = product_data["quantity"]  # Доступное количество товара
+
+            # Открываем диалог для ввода количества
+            quantity, ok = QInputDialog.getInt(
+                self,
+                "Выбор количества",
+                f"Введите количество товара (доступно {available_quantity} шт.):",
+                minValue=1,  
+                maxValue=available_quantity,  # Ограничение по количеству товара
+            )
+
+            if ok and quantity > 0:  # Проверяем, что пользователь не отменил ввод
+                session = local_session()
+                try:
+                    # Проверяем, есть ли у пользователя активная корзина
+                    cart = session.query(Cart).filter(
+                        Cart.user_id == user_id,
+                        Cart.status == "awaiting payment"
+                    ).first()
+
+                    if not cart:
+                        # Создаём новую корзину
+                        cart = Cart(
+                            user_id=user_id,
+                            status="awaiting payment",
+                            created_at=datetime.utcnow()
+                        )
+                        session.add(cart)
+                        session.commit()
+                        session.refresh(cart)
+
+                    # Проверяем, есть ли товар уже в корзине
+                    cart_item = session.query(CartItem).filter(
+                        CartItem.cart_id == cart.id,
+                        CartItem.product_id == product_id
+                    ).first()
+
+                    if cart_item:
+                        # Если товар уже есть в корзине - обновляем количество
+                        cart_item.product_count += quantity
+                        cart_item.summary = cart_item.product_count * price
+                    else:
+                        # Добавляем новый товар в корзину
+                        cart_item = CartItem(
+                            cart_id=cart.id,
+                            product_id=product_id,
+                            product_count=quantity,
+                            summary=quantity * price
+                        )
+                        session.add(cart_item)
+
+                    # Уменьшаем количество товара в базе
+                    product = session.query(Products).filter(Products.id == product_id).first()
+                    if product:
+                        if product.quantity < quantity:
+                            QMessageBox.warning(self, "Ошибка", f"Недостаточно товара на складе!")
+                            return
+                        
+                        product.quantity -= quantity  # Уменьшаем количество на складе
+
+                    session.commit()
+
+                    # Обновляем список товаров в магазине
+                    self.load_products()
+
+                    QMessageBox.information(self, "Добавлено", f"{quantity} шт. товара '{name}' добавлено в корзину!")
+
+                except SQLAlchemyError as e:
+                    session.rollback()
+                    QMessageBox.critical(self, "Ошибка", f"Ошибка при добавлении товара: {str(e)}")
+                finally:
+                    session.close()
+    
+    
     def update_navigation_buttons(self):
         """Обновление состояния кнопок навигации"""
         session = local_session()

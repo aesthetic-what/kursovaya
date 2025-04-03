@@ -39,6 +39,7 @@ class ManagerWindow(QMainWindow):
             self.ui.tableWidget.setItem(row, 0, QTableWidgetItem(str(product.id)))
             self.ui.tableWidget.setItem(row, 1, QTableWidgetItem(product.name)),
             self.ui.tableWidget.setItem(row, 2, QTableWidgetItem(product.description))
+            self.ui.tableWidget.setItem(row, 3, QTableWidgetItem(product.type))
             self.ui.tableWidget.setItem(row, 3, QTableWidgetItem(product.importer))
             self.ui.tableWidget.setItem(row, 4, QTableWidgetItem(str(product.quantity)))
             self.ui.tableWidget.setItem(row, 5, QTableWidgetItem(str(product.date_add)))
@@ -81,11 +82,12 @@ class ManagerWindow(QMainWindow):
         products = session.execute(select(Products).filter(Products.name.ilike(f"%{search_term}%"))).scalars().all()
         self.tableWidget.setRowCount(len(products))
         for row, product in enumerate(products):
-            self.tableWidget.setItem(row, 0, QTableWidgetItem(str(product.id)))
-            self.tableWidget.setItem(row, 1, QTableWidgetItem(product.name))
-            self.tableWidget.setItem(row, 2, QTableWidgetItem(product.importer))
-            self.tableWidget.setItem(row, 3, QTableWidgetItem(str(product.quantity)))
-            self.tableWidget.setItem(row, 4, QTableWidgetItem(str(product.date_add)))
+            self.ui.tableWidget.setItem(row, 0, QTableWidgetItem(str(product.id)))
+            self.ui.tableWidget.setItem(row, 1, QTableWidgetItem(product.name))
+            self.ui.tableWidget.setItem()
+            self.ui.tableWidget.setItem(row, 2, QTableWidgetItem(product.importer))
+            self.ui.tableWidget.setItem(row, 3, QTableWidgetItem(str(product.quantity)))
+            self.ui.tableWidget.setItem(row, 4, QTableWidgetItem(str(product.date_add)))
         session.close()
 
 if __name__ == "__main__":
