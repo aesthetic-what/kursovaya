@@ -36,7 +36,7 @@ class LoginWindow(QMainWindow):
         finally:
             session.close()
             
-        self.shop_win = ShopWindow(login)
+        self.shop_win = ShopWindow(login, user.photo)
         self.shop_win.setFixedSize(1013, 682)
         self.shop_win.show()
         self.close()
@@ -52,8 +52,8 @@ class RegWindow(QMainWindow):
         
     def go_to_login(self):
         self.login_win = LoginWindow()
-        self.login_win.show(362, 226)
-        self.login_win.setFixedSize()
+        self.login_win.show()
+        self.login_win.setFixedSize(362, 226)
         self.close()
         
     def register(self):

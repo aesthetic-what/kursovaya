@@ -3,7 +3,7 @@
 ################################################################################
 ## Form generated from reading UI file 'shop_window.ui'
 ##
-## Created by: Qt User Interface Compiler version 6.8.2
+## Created by: Qt User Interface Compiler version 6.8.3
 ##
 ## WARNING! All changes made in this file will be lost when recompiling UI file!
 ################################################################################
@@ -56,7 +56,7 @@ class Ui_ShopWindow(object):
 "\n"
 "QListWidget::item {\n"
 "    /*background-color: white; /* \u0424\u043e\u043d \u044d\u043b\u0435\u043c\u0435\u043d\u0442\u043e\u0432 */\n"
-"    color: #333; /* \u0426\u0432\u0435\u0442 \u0442\u0435\u043a\u0441\u0442\u0430 */\n"
+"    color: black; /* \u0426\u0432\u0435\u0442 \u0442\u0435\u043a\u0441\u0442\u0430 */\n"
 "    padding: 12px 15px;\n"
 "    border: 1px solid;\n"
 "    border-radius: 3px;\n"

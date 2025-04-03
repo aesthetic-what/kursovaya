@@ -203,6 +203,9 @@
    <property name="text">
     <string/>
    </property>
+   <property name="scaledContents">
+    <bool>true</bool>
+   </property>
   </widget>
   <widget class="QPushButton" name="take_photo_btn">
    <property name="geometry">

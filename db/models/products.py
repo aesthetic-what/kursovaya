@@ -11,4 +11,5 @@ class Products(Base):
     importer: Mapped[str] = mapped_column(nullable=False)
     quantity: Mapped[int] = mapped_column(default=0)
     date_add: Mapped[datetime]
+    price: Mapped[int] = mapped_column(nullable=False)
     photo: Mapped[bytes] = mapped_column(LargeBinary, nullable=True)
