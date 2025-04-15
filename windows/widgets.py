@@ -10,16 +10,30 @@ class ListItemWidget(QWidget):
 
         self.parent_list = parent_list  # Сохраняем ссылку на QListWidget
         self.setStyleSheet("""
-                QPushButton {
-                background-color: #4CAF50;
-                color: white;
-                border: none;
-                padding: 5px 10px;
-                border-radius: 3px;
-            }
-            QPushButton:hover {
-                background-color: #45a049;
-            }
+                QListWidget {
+                    background-color: #B0B0B0; /* Цвет фона */
+                    border: 1px solid #ccc; /* Граница */
+                    border-radius: 25px; /* Скругление углов */
+                    padding: 15px;
+                }
+
+                QListWidget::item {
+                    /*background-color: white; /* Фон элементов */
+                    color: black /* Цвет текста */
+                    padding: 12px 15px;
+                    border: 1px solid;
+                    border-radius: 3px;
+                }
+
+                QListWidget::item:hover {
+                    background-color: #d0d0d0;
+                }
+
+                QListWidget::item:selected {
+                    background-color: #005a9e; /* Темно-синий фон */
+                    color: white; /* Белый текст */
+                    font-weight: bold; /* Жирный текст для выделенного элемента */
+                }
             """)
 
         # Картинка (если нет данных, загружаем "default.png")
@@ -47,4 +61,5 @@ class ListItemWidget(QWidget):
         layout = QHBoxLayout()
         layout.addWidget(self.image_label)
         layout.addWidget(self.text_label)
+        layout.setSpacing(0)  # Убирает промежуток между элементами
         self.setLayout(layout)

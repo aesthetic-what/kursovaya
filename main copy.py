@@ -1,6 +1,7 @@
 from db.db_core import init_db
 from PySide6.QtWidgets import QApplication
 from windows.manager import ManagerWindow
+from windows.admin import AdminWindow
 from windows.auth import LoginWindow
 from windows.user import ShopWindow
 import sys
@@ -14,7 +15,7 @@ from db.models.users import Users
 if __name__ == "__main__":
     init_db()
     app = QApplication(sys.argv)
-    login = ManagerWindow()
+    login = AdminWindow()
     login.show()
     app.exec()
     
