@@ -9,6 +9,7 @@ from sqlalchemy import select
 from db.models.products import Products
 from db.db_core import local_session
 from windows.ui.library import Ui_MainWindow
+from windows.edit_product import EditProductsWindow
 from windows.add_book import AddBookDialog
 import sys
 
@@ -63,18 +64,24 @@ class ManagerWindow(QMainWindow):
             self.load_products()
     
     def edit_product(self):
-        selected_row = self.tableWidget.currentRow()
-        if selected_row >= 0:
-            product_id = int(self.tableWidget.item(selected_row, 0).text())
-            session = self.get_session()
-            product = session.query(Products).filter_by(id=product_id).first()
-            if product:
-                product.name = "Обновленный товар"
-                product.importer = "Обновленный импортер"
-                product.quantity = 20
-                session.commit()
-            session.close()
-            self.load_products()
+        selected_row = self.ui.tableWidget.currentRow()
+        if selected_row < 0:
+            QMessageBox.warning(self, "Ошибка", "Выберите продукт для редактирования.")
+            return
+
+        # Получаем данные из таблицы
+        product_data = {
+            'id': int(self.ui.tableWidget.item(selected_row, 0).text()),
+            'name': self.ui.tableWidget.item(selected_row, 1).text(),
+            'description': self.ui.tableWidget.item(selected_row, 2).text(),
+            'importer': self.ui.tableWidget.item(selected_row, 3).text(),
+            'quantity': self.ui.tableWidget.item(selected_row, 4).text(),
+            'date_add': self.ui.tableWidget.item(selected_row, 5).text(),
+        }
+
+        # Передаём в окно редактирования
+        self.edit_prod_win = EditProductsWindow(product_data)
+        self.edit_prod_win.show()
     
     def search_products(self):
         search_term = self.lineEdit_search.text()

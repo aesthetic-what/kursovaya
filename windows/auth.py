@@ -3,6 +3,7 @@ from sqlalchemy import select, insert
 from windows.ui.reg_win import Ui_RegWindow
 from windows.ui.login_win import Ui_LoginWindow
 from windows.user import ShopWindow
+from windows.manager import ManagerWindow
 from db.models.users import Users
 from db.db_core import local_session
 
@@ -35,10 +36,14 @@ class LoginWindow(QMainWindow):
                 return
         finally:
             session.close()
-            
-        self.shop_win = ShopWindow(login, user.photo)
-        self.shop_win.setFixedSize(1013, 682)
-        self.shop_win.show()
+        
+        if user.role == "user":
+            self.shop_win = ShopWindow(login, user.photo)
+            self.shop_win.setFixedSize(1013, 682)
+            self.shop_win.show()
+        elif user.role == "manager":
+            self.manager_win = ManagerWindow()
+            self.manager_win.show()
         self.close()
         
 class RegWindow(QMainWindow):

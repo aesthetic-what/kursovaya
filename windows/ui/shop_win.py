@@ -3,7 +3,7 @@
 ################################################################################
 ## Form generated from reading UI file 'shop_window.ui'
 ##
-## Created by: Qt User Interface Compiler version 6.8.2
+## Created by: Qt User Interface Compiler version 6.9.0
 ##
 ## WARNING! All changes made in this file will be lost when recompiling UI file!
 ################################################################################
@@ -19,7 +19,7 @@ from PySide6.QtWidgets import (QApplication, QComboBox, QHBoxLayout, QLabel,
     QLineEdit, QListWidget, QListWidgetItem, QMainWindow,
     QPushButton, QScrollArea, QSizePolicy, QVBoxLayout,
     QWidget)
-import windows.ui.res_rc
+import res_rc
 
 class Ui_ShopWindow(object):
     def setupUi(self, MainWindow):
@@ -107,7 +107,7 @@ class Ui_ShopWindow(object):
         self.image_user = QLabel(self.centralwidget)
         self.image_user.setObjectName(u"image_user")
         self.image_user.setGeometry(QRect(70, 20, 200, 200))
-        self.image_user.setPixmap(QPixmap(u":/images/2e2ecb46a9db18b8f47baf6f849195eb.jpg"))
+        self.image_user.setPixmap(QPixmap(u":/images/ChatGPT Image 3 \u0430\u043f\u0440. 2025 \u0433., 11_09_21.png"))
         self.image_user.setScaledContents(True)
         self.login = QLabel(self.centralwidget)
         self.login.setObjectName(u"login")

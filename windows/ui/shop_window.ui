@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>MainWindow</class>
- <widget class="QMainWindow" name="MainWindow">
+ <class>ShopWindow</class>
+ <widget class="QMainWindow" name="ShopWindow">
   <property name="geometry">
    <rect>
     <x>0</x>
@@ -156,7 +156,7 @@ QListWidget::item:selected {
      <string/>
     </property>
     <property name="pixmap">
-     <pixmap resource="res.qrc">:/images/2e2ecb46a9db18b8f47baf6f849195eb.jpg</pixmap>
+     <pixmap resource="res.qrc">:/images/ChatGPT Image 3 апр. 2025 г., 11_09_21.png</pixmap>
     </property>
     <property name="scaledContents">
      <bool>true</bool>

@@ -44,16 +44,9 @@ class ShopWindow(QMainWindow):
         
         # Константы и инициализация просцессов при запуске
         self.login = login
-        self.photo = photo
         self.load_products()
         self.ui.login.setText(login)
         self.user_info = self.get_info()
-        if photo:
-            pixmap = QPixmap()
-            pixmap.loadFromData(QByteArray(photo))
-            label_size = self.ui.image_user.size()  # Получаем размеры QLabel
-            pixmap = pixmap.scaled(label_size, Qt.AspectRatioMode.KeepAspectRatio, Qt.TransformationMode.SmoothTransformation)
-            self.ui.image_user.setPixmap(pixmap)
         
     
     def get_info(self) -> Users:
@@ -81,7 +74,7 @@ class ShopWindow(QMainWindow):
         self.close()
         
     def edit_profile(self):
-        self.edit_win = EditProfile(self.login, self.photo)
+        self.edit_win = EditProfile(self.login)
         self.edit_win.profileUpdated.connect(self.update_profile)
         self.edit_win.setFixedSize(879, 438)
         self.edit_win.show()

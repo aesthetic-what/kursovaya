@@ -1,5 +1,3 @@
-import sys
-import pyodbc
 from PySide6.QtWidgets import QApplication, QDialog, QMessageBox
 from windows.ui.add_product import Ui_Dialog
 from db.db_core import local_session
