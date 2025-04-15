@@ -1,5 +1,3 @@
-import sys
-import pyodbc
 from PySide6.QtWidgets import QApplication, QDialog, QMessageBox
 from windows.ui.add_product import Ui_Dialog
 from db.db_core import local_session
@@ -17,6 +15,7 @@ class AddBookDialog(QDialog):
         """Добавляет новый товар в базу данных"""
         name = self.ui.name_line.text().strip()
         description = self.ui.desc_line.text()
+        price = self.ui.price_line.text()
         importer = self.ui.importer_line.text().strip()
         quantity = self.ui.quantity_line.text().strip()
         
@@ -29,6 +28,7 @@ class AddBookDialog(QDialog):
                 name=name,
                 description=description,
                 importer=importer,
+                price=price,
                 quantity=int(quantity),
                 date_add=datetime.now()
             )

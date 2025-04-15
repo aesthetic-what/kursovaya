@@ -13,7 +13,7 @@ class EditProfile(QDialog):
 
     photo_data = None
 
-    def __init__(self, login: str, photo: bytes | None = None):
+    def __init__(self, login: str | None = None, photo: bytes | None = None):
         super().__init__()
         self.ui = Ui_Dialog()
         self.ui.setupUi(self)

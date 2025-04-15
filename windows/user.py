@@ -48,12 +48,6 @@ class ShopWindow(QMainWindow):
         self.load_products()
         self.ui.login.setText(login)
         self.user_info = self.get_info()
-        if photo:
-            pixmap = QPixmap()
-            pixmap.loadFromData(QByteArray(photo))
-            label_size = self.ui.image_user.size()  # Получаем размеры QLabel
-            pixmap = pixmap.scaled(label_size, Qt.AspectRatioMode.KeepAspectRatio, Qt.TransformationMode.SmoothTransformation)
-            self.ui.image_user.setPixmap(pixmap)
         
     
     def get_info(self) -> Users:
@@ -96,12 +90,6 @@ class ShopWindow(QMainWindow):
             if user:
                 # Обновляем UI (замените на свои элементы интерфейса)
                 self.ui.login.setText(user.login)
-
-                # Если есть фото, отображаем его
-                if user.photo:
-                    pixmap = QPixmap()
-                    pixmap.loadFromData(user.photo)
-                    self.ui.image_user.setPixmap(pixmap)
                 
                 print("Профиль обновлен в интерфейсе.")
 

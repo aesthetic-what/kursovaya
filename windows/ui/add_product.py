@@ -34,7 +34,7 @@ class Ui_Dialog(object):
         self.verticalLayout.setObjectName(u"verticalLayout")
         self.label = QLabel(self.horizontalLayoutWidget)
         self.label.setObjectName(u"label")
-        sizePolicy = QSizePolicy(QSizePolicy.Policy.Preferred, QSizePolicy.Policy.Expanding)
+        sizePolicy = QSizePolicy(QSizePolicy.Policy.Preferred, QSizePolicy.Policy.Preferred)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.label.sizePolicy().hasHeightForWidth())
@@ -50,6 +50,12 @@ class Ui_Dialog(object):
         self.label_2.setAlignment(Qt.AlignCenter)
 
         self.verticalLayout.addWidget(self.label_2)
+
+        self.label_5 = QLabel(self.horizontalLayoutWidget)
+        self.label_5.setObjectName(u"label_5")
+        self.label_5.setAlignment(Qt.AlignCenter)
+
+        self.verticalLayout.addWidget(self.label_5)
 
         self.label_3 = QLabel(self.horizontalLayoutWidget)
         self.label_3.setObjectName(u"label_3")
@@ -74,7 +80,7 @@ class Ui_Dialog(object):
         self.verticalLayout_2.setObjectName(u"verticalLayout_2")
         self.name_line = QLineEdit(self.horizontalLayoutWidget)
         self.name_line.setObjectName(u"name_line")
-        sizePolicy1 = QSizePolicy(QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Expanding)
+        sizePolicy1 = QSizePolicy(QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Preferred)
         sizePolicy1.setHorizontalStretch(10)
         sizePolicy1.setVerticalStretch(0)
         sizePolicy1.setHeightForWidth(self.name_line.sizePolicy().hasHeightForWidth())
@@ -88,6 +94,16 @@ class Ui_Dialog(object):
         self.desc_line.setSizePolicy(sizePolicy1)
 
         self.verticalLayout_2.addWidget(self.desc_line)
+
+        self.price_line = QLineEdit(self.horizontalLayoutWidget)
+        self.price_line.setObjectName(u"price_line")
+        sizePolicy2 = QSizePolicy(QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Preferred)
+        sizePolicy2.setHorizontalStretch(0)
+        sizePolicy2.setVerticalStretch(0)
+        sizePolicy2.setHeightForWidth(self.price_line.sizePolicy().hasHeightForWidth())
+        self.price_line.setSizePolicy(sizePolicy2)
+
+        self.verticalLayout_2.addWidget(self.price_line)
 
         self.importer_line = QLineEdit(self.horizontalLayoutWidget)
         self.importer_line.setObjectName(u"importer_line")
@@ -119,6 +135,7 @@ class Ui_Dialog(object):
         Dialog.setWindowTitle(QCoreApplication.translate("Dialog", u"Dialog", None))
         self.label.setText(QCoreApplication.translate("Dialog", u"\u041d\u0430\u0437\u0432\u0430\u043d\u0438\u0435 \u0442\u043e\u0432\u0430\u0440\u0430", None))
         self.label_2.setText(QCoreApplication.translate("Dialog", u"\u041e\u043f\u0438\u0441\u0430\u043d\u0438\u0435 \u0442\u043e\u0432\u0430\u0440\u0430(\u043d\u0435\u043e\u0431\u044f\u0437\u0430\u0442\u0435\u043b\u044c\u043d\u043e)", None))
+        self.label_5.setText(QCoreApplication.translate("Dialog", u"\u0426\u0435\u043d\u0430", None))
         self.label_3.setText(QCoreApplication.translate("Dialog", u"\u041f\u043e\u0441\u0442\u0430\u0432\u0449\u0438\u043a", None))
         self.label_4.setText(QCoreApplication.translate("Dialog", u"\u041a\u043e\u043b\u0438\u0447\u0435\u0441\u0442\u0432\u043e", None))
         self.add_button.setText(QCoreApplication.translate("Dialog", u"\u0414\u043e\u0431\u0430\u0432\u0438\u0442\u044c", None))
